@@ -1,11 +1,7 @@
 <div class="todo-container">
   <h2>Todo List</h2>
 
-  <input
-    [(ngModel)]="newTodo"
-    (keyup.enter)="addTodo()"
-    placeholder="Add new task"
-  />
+  <input [(ngModel)]="newTodo" placeholder="Add new task" />
   <button (click)="addTodo()">Add</button>
 
   <ul>

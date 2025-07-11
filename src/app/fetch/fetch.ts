@@ -19,25 +19,29 @@ interface Product {
   standalone: true,
   imports: [CommonModule, FormsModule, HttpClientModule],
   template: `
-    <div *ngIf="loading">
-      <h2>Loading</h2>
-    </div>
+    <div class="container" style="margin-top: 20px">
+      <div *ngIf="loading">
+        <h2>Loading</h2>
+      </div>
 
-    <div *ngIf="!loading">
-      <select [(ngModel)]="category" (change)="handleCategoryChange()">
-        <option value="All">All Categories</option>
-        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
-      </select>
+      <div *ngIf="!loading">
+        <select [(ngModel)]="category" (change)="handleCategoryChange()">
+          <option value="All">All Categories</option>
+          <option *ngFor="let cat of categories" [value]="cat">
+            {{ cat }}
+          </option>
+        </select>
 
-      <button (click)="handleSort()">Sort</button>
+        <button (click)="handleSort()">Sort</button>
 
-      <ul>
-        <li *ngFor="let p of filteredProducts">
-          <h2>{{ p.title }}</h2>
-          <p>\${{ p.price }}</p>
-          <img [src]="p.image" [alt]="p.title" width="100" />
-        </li>
-      </ul>
+        <ul>
+          <li *ngFor="let p of filteredProducts">
+            <h2>{{ p.title }}</h2>
+            <p>\${{ p.price }}</p>
+            <img [src]="p.image" [alt]="p.title" width="100" />
+          </li>
+        </ul>
+      </div>
     </div>
   `,
 })
@@ -73,7 +77,7 @@ export class FetchComponent {
 
   handleCategoryChange() {
     this.filteredProducts =
-      this.category === 'all'
+      this.category === 'All'
         ? this.products
         : this.products.filter((p) => p.category === this.category);
   }
